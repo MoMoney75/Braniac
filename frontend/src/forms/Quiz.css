@@ -1,0 +1,50 @@
+#settingsFormDiv{
+    display: flex;
+    font-size: 0.9rem;
+    flex-direction: column;
+    width: 75%;
+    /* height: 50%; */
+    align-items: center;
+    background-color: rgb(14,15,22);
+    justify-content: center;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1rem;
+    border-color: rgba(43,45,64,255);
+    margin: 0 auto 2em;
+
+    
+}
+
+#settingsForm{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-top: 1rem;
+
+}
+
+.settingsLabel{
+    padding-right: 1em;
+    padding-top: 0.5rem;
+
+}
+.settingsSelect{
+    margin-left: 1rem;
+
+}
+
+
+#settingsSubmitBtn{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        background-color: rgb(109,79,198);
+        border-style: solid;
+        border-width: 1.5px;
+        border-radius: 1rem;
+        border-color: rgba(43,45,64,255);
+        font-size: 0.9rem;
+      }
+#settingsSubmitBtn:hover{
+          background-color: rgba(43,45,64,255);
+          border-color:rgb(109,79,198) ;
+        }

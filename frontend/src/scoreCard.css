@@ -1,0 +1,46 @@
+#mainScoreDiv{
+    display: flex;
+    margin-left: 2rem;
+
+}
+
+.scoreCardDiv{
+    flex: 1;
+    margin: 0;
+}
+
+.scoreCard{
+display: flex;
+flex-direction: column;
+width: 90%;
+align-items: center;
+background-color: rgb(14,15,22);
+justify-content: center;
+border-style: solid;
+border-width: 3px;
+border-radius: 1rem;
+border-color: rgba(43,45,64,255);
+margin-bottom: 1rem;
+}
+
+.scoreCard > ul > li{
+    font-size: 1rem;
+}
+
+#highScore{
+    color:  rgb(12, 173, 104);
+}
+
+
+#lowScore{
+    color:  rgb(161, 14, 85);
+}
+
+#emptyDiv{
+    height: 100%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,62 @@
+#mainGameDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 2rem;
+
+}
+
+/* #gameCard{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    align-items: center;
+    background-color: rgb(14,15,22);
+    justify-content: center;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 1rem;
+    border-color: rgba(43,45,64,255);
+} */
+
+#question{
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.answers{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    font-size: 1rem;
+}
+
+#counters{
+display: flex;
+font-size: 1rem;
+margin-bottom: 2em;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+
+#answerBtn{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: rgb(109,79,198);
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 1rem;
+    border-color: rgba(43,45,64,255);
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column-reverse;
+    
+  }
+#answerBtn:hover{
+      background-color: rgba(43,45,64,255);
+      border-color:rgb(109,79,198) ;
+    }

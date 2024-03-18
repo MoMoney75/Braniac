@@ -1,0 +1,11 @@
+#logo h1{
+    margin-top: 0;
+    display: flex;
+    font-size: 3rem;
+    font-family: "Kode Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+
+}
+

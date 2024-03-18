@@ -1,0 +1,55 @@
+#navbar{
+    display: flex;
+    flex-direction: row;
+}
+
+nav{
+    background-color:rgba(43,45,64,255) ;
+
+}
+nav > span{
+    margin-left: 0.2rem;
+    margin-bottom: 0.2em;
+
+}
+
+#profileBtn{
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: rgb(109,79,198);
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 1rem;
+    border-color: rgba(43,45,64,255);
+    text-decoration: none;
+    font-size: 0.7rem;
+  }
+#profileBtn:hover{
+      background-color: rgba(43,45,64,255);
+      border-color:rgb(109,79,198) ;
+      text-decoration-style: none ;
+    }
+
+a{
+    color: white !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+}
+
+ #logoutBtn{
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        background-color: rgb(109,79,198);
+        border-style: solid;
+        border-width: 1.5px;
+        border-radius: 1rem;
+        border-color: rgba(43,45,64,255);
+        font-size: 0.7rem;
+      }
+ #logoutBtn:hover{
+          background-color: rgba(43,45,64,255);
+          border-color:rgb(109,79,198) ;
+        }
