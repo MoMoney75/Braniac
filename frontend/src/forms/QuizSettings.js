@@ -1,7 +1,8 @@
 import './Quiz.css'
 import React, {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import GameApi from "../APIs/GameApi";
-import QuestionCard from "../QuestionCard";
+import QuestionCard from "../Cards/QuestionCard";
 
 
 
@@ -19,8 +20,9 @@ const INITIAL_STATE ={
 const [formData, setFormData] = useState(INITIAL_STATE);
 const [questions, setQuestions] = useState([])
 const [increment, setIncrement] = useState(1)
-const [error, setErrors] = useState([]);
+const [error, setError] = useState([]);
 const [gameOver, setGameOver] = useState(true)
+const navigate = useNavigate();
 
 const handleChange = (e) =>{
     const {name,value} = e.target;
@@ -38,6 +40,12 @@ const handleSubmit = async (e) =>{
         formData.difficulty,
         formData.category
         );
+          if(result.length === 0){
+            setError("Sorry! not enough questions in this category to fulfill your request! Please try again")
+            navigate('/quiz')
+
+          }
+          console.log("RESULT IN FRONTEND:",result)
 
         /* handles scoring system based on user difficulty choice */
         if(formData.difficulty === 'medium'){
@@ -57,7 +65,7 @@ const handleSubmit = async (e) =>{
 return (
 
     <div id='settingsFormDiv'>
-
+    <p style={{color: 'red'}}>{error}</p>
         <form id='settingsForm' onSubmit={handleSubmit} style={{ display: gameOver === false ? 'none' : null}}>
     <div>
         <label htmlFor="amount" className="form-label settingsLabel">Number of questions</label>

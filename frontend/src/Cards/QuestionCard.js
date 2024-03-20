@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import UserAPI from './APIs/UserAPi';
+import React, {useState, useEffect} from 'react';
+import UserAPI from '../APIs/UserAPi';
 import './Questions.css'
 
 function QuestionCard({questions, increment, gameOver, setGameOver}){
@@ -11,8 +11,24 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
     const [questionCounter, setQuestionCounter] = useState(1);
     const [finalMsg, setFinalMsg] = useState('')
     const currQuestion = questions[currQuestionIdx];
-    const answers = [...currQuestion.incorrectAnswers,currQuestion.correctAnswer];
+    const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const finalCategory = questions[0].category;
+
+    /* shuffle function used to shuffle the answers shown to a user*/
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+  }
+  /* shuffled answers*/
+  useEffect(() => {
+    if (currQuestion) {
+      const answers = [...currQuestion.incorrectAnswers, currQuestion.correctAnswer];
+      setShuffledAnswers(shuffleArray(answers));
+    }
+  }, [currQuestion, currQuestionIdx]);
 
     /** Retrieve user_id from session for saveGame()*/
     const user_id = +sessionStorage.getItem("user_id")
@@ -68,8 +84,9 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
          * score does not need to be incremented
          */
         else if(currQuestionIdx + 1 >= questions.length && selectedAnswer !== currQuestion.correctAnswer) {
-        setFinalMsg(`Game over! Your final score is ${score}`)
-        setTimeout(async()=>{
+          setFinalMsg(`Game over! Your final score is ${score}`)
+          setTimeout(async()=>{
+            
             await UserAPI.saveGame(user_id, score, finalCategory);
             resetGame();
         },4000)
@@ -82,7 +99,7 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
                 <p id='question' dangerouslySetInnerHTML={{__html :currQuestion.question}}></p>
 
                 <form onSubmit={(e) => handleSubmit(e, currQuestion)}>
-                  {answers.map((answer, idx) => (
+                  {shuffledAnswers.map((answer, idx) => (
                     <div key={idx} className='answers'>
                       <input
                         type='radio'
@@ -99,6 +116,7 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
                 </form>
                 <p style={{color:response === 'correct!' ? 'green' : 'red'}}>{response}</p>
                 <p style={{color: 'green'}}>{finalMsg}</p>
+
                 <div id='counters'>
                 <p>score:{score}</p>
                 <p>{`${questionCounter} / ${questions.length}`}</p>

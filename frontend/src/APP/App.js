@@ -1,8 +1,8 @@
 import './App.css';
 import React, {useState, useEffect} from 'react'
-import Skeleton from './Routes/Routes';
-import GameApi from './APIs/GameApi';
-import Logo from './Logo';
+import Skeleton from '../Routes/Routes';
+import GameApi from '../APIs/GameApi';
+import Logo from '../Home/Logo';
 
 
 function App() {

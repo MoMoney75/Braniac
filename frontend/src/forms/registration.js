@@ -14,7 +14,7 @@ const INITIAL_STATE = {
 }
 const navigate = useNavigate();
 const [formData, setFormData] = useState(INITIAL_STATE);
-const [errors, setErrors] = useState([]);
+const [error, setError] = useState(null);
     
 function handleChange(e){
 const {name,value} = e.target;
@@ -24,17 +24,17 @@ setFormData(data =>({...data,[name]: value}
 
 async function handleSubmit(e){
     e.preventDefault();
-    try{
-        const result = await UserAPI.register(formData);
+    const result = await UserAPI.register(formData);
+        if(!result){
+           setError("Username and password must be 8-25 characters long")
+        }
+       
+        else{
         const user_id = result.user.user_id;
         sessionStorage.setItem("user_id", user_id);
         navigate('/quiz');
         setFormData(INITIAL_STATE);
-    }
-    catch{
-        setErrors("INAVID DATA")
-    }
-
+        }
 }
 
 return(
@@ -44,10 +44,10 @@ return(
             Create an account  
         </h1>
 
-
+        {error && <p style={{ color: 'red' }}>{error}</p>}
      
         <form onSubmit={handleSubmit} id='form'>
-        {errors.length > 0 && <p style={{ color: 'red' }}>{errors}</p>}
+       
             <div className='mb-3'> 
             <label htmlFor='username' className='form-label'> username </label>
             <input type='text'

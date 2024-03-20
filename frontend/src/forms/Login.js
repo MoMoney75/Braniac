@@ -24,19 +24,19 @@ setFormData(data =>({...data,[name]: value}
 /*Logs user in, adds user_id to sessionStorage */
 async function handleSubmit(e){
         e.preventDefault();
-        const user = await UserAPI.login(formData);
-
+        const result = await UserAPI.login(formData);
         /* checks for invalid credentials */
-        if(!user){
+        if(!result){
             setErrors("Invalid username or password")
             setFormData(INITIAL_STATE)
         }
         
         else{
-        sessionStorage.setItem('user_id', user.user_id)
+        sessionStorage.setItem('user_id', result.user.user_id)
         navigate('/quiz')
         setFormData(INITIAL_STATE);
         }
+
 }
 
 return(

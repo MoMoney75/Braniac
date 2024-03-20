@@ -9,26 +9,37 @@ router.use(sessionMiddleware)
 /* Handles get,post for user game data */
 router.post('/save', async function(req,res,next){
     const {user_id,score, category} = req.body;
-
-    if(!req.session.user){
-        console.log("USER NOT LOGGED IN")
-    }
-
-    const result = await Game.saveGame(user_id,score,category)
-    res.json(result)
-
+    try{
+        
+        const result = await Game.saveGame(user_id,score,category)
+        return res.status(200).json({success: true,result})
+        }
+    catch(err){
+        return next(err)
+            }
 })
 
 router.get('/highscore/:user_id',async function(req,res,next){
     const {user_id} = req.params;  
+    try{
     const result = await Game.getHighScore(user_id)
-    res.json(result)
+    return res.status(200).json({success : true ,result})
+    }
+
+    catch(err){
+        return next(err)
+    }
 })
 
 router.get('/lowscore/:user_id', async function(req,res,next){ 
     const {user_id} = req.params;
+    try{
     const result = await Game.getLowScore(user_id)
-    res.json(result)
+    return res.status(200).json({success : true,result})
+    }
+    catch(err){
+        return next(err);
+    }
 })
 
 module.exports = router;

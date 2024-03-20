@@ -1,11 +1,11 @@
 import React from 'react';
-import {Routes, Route, Navigate, Link} from 'react-router-dom';
-import Home from '../Home';
+import {Routes, Route} from 'react-router-dom';
+import Home from '../Home/Home';
 import RegistrationForm from '../forms/registration';
 import LoginForm from '../forms/Login';
 import QuizSettings from '../forms/QuizSettings';
-import QuestionCard from '../QuestionCard';
-import ScoreCard from '../ScoreCard';
+import QuestionCard from '../Cards/QuestionCard';
+import ScoreCard from '../Cards/ScoreCard';
 import PrivateRoute from './PrivateRoute';
 
 

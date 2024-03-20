@@ -17,26 +17,27 @@ class User{
             const user = result.rows[0];
             
             if(user){
-            const isValid = await bcrypt.compare(password, user.password);
+                const isValid = await bcrypt.compare(password, user.password);
             
             if(isValid === true){
-            delete user.password;
-            return user;
-                }
+                delete user.password;
+                return user;
+             }
             }
             throw new Error("Invalid username or password")
         }
     static async register(username,password){
 
             const hashedPassword = await bcrypt.hash(password,12);
-            const result = await db.query(`INSERT INTO users(username, password) 
+
+            const result = await 
+            db.query(`INSERT INTO users(username, password) 
             VALUES ($1, $2) RETURNING username`,[username,hashedPassword]);
             const user = result.rows[0];
 
             if (username.length < 8 || password.length < 8) {
                 throw new Error("Username and password must be atleast 8 characters long");
             }
-
              return user;       
     }
 

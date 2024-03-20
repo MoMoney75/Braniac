@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './scoreCard.css'
-import UserAPI from './APIs/UserAPi';
+import UserAPI from '../APIs/UserAPi';
 
 
 /*Shows user high scores  and low scores sorted by categories */
@@ -11,9 +11,10 @@ function ScoreCard(){
     useEffect(()=>{
         const getLowScore = async()=>{
         try{
-            const user_id = sessionStorage.getItem('user_id')
+        const user_id = sessionStorage.getItem('user_id')
            const result =  await UserAPI.getLowScore(user_id);
-           setLowScore(result);
+           console.log("RESULT IN SCORECARD:", result)
+           setLowScore(result.result);
         }
         catch(e){
             console.log(e);
@@ -27,8 +28,8 @@ function ScoreCard(){
     const getHighScores = async()=>{
     try{
         const user_id = sessionStorage.getItem('user_id')
-       const result =  await UserAPI.getHighScore(user_id);
-       setHighScores(result);
+        const result =  await UserAPI.getHighScore(user_id);
+        setHighScores(result.result);
     }
     catch(e){
         console.log(e);
@@ -47,7 +48,8 @@ return(
                 <ul>
                     {highScores.map((score,idx)=>(
                         <li key={idx}>
-                            <p>{score.category}: {score.maxscore}</p>
+                            <p dangerouslySetInnerHTML = {{__html: score.category + ':' +' ' +  score.maxscore}}></p>
+
                         </li>
                         ))}
                 </ul>
@@ -60,7 +62,7 @@ return(
                 <ul>
                     {lowScore.map((score,idx)=>(
                         <li key={idx}>
-                            <p>{score.category}: {score.minscore}</p>
+                             <p dangerouslySetInnerHTML = {{__html: score.category + ':' +' ' +  score.minscore}}></p>
                         </li>
                         ))}
                 </ul>
