@@ -1,6 +1,4 @@
 import axios from "axios";
-const BASE_URL = 'https://opentdb.com/api.php?';
-
 
 class GameApi{
     static token = null;

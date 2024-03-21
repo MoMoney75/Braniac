@@ -8,18 +8,6 @@
 
 }
 
-/* #gameCard{
-    display: flex;
-    flex-direction: column;
-    width: 75%;
-    align-items: center;
-    background-color: rgb(14,15,22);
-    justify-content: center;
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 1rem;
-    border-color: rgba(43,45,64,255);
-} */
 
 #question{
     text-align: center;
