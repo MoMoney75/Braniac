@@ -97,9 +97,9 @@ return (
           value={formData.difficulty}
           onChange={handleChange}
         >
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+            <option value="easy">Easy (1pt)</option>
+            <option value="medium">Medium (3pts)</option>
+            <option value="hard">Hard (5pts)</option>
         </select>
         </div>
 

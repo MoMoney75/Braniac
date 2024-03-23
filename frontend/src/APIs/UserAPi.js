@@ -6,7 +6,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
    Also handles user game stats and saveGame */
 class UserAPI {
   static async request(endpoint, data = {}, method = "get") {
-    //console.debug("API Call:",BASE_URL, endpoint, data, method);
+
 
     const url = `${BASE_URL}/${endpoint}`;
     const params = (method === "get")

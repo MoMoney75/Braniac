@@ -13,13 +13,14 @@ html {
     width: 100%;
     min-height: 245px;
 
+
 }
 
 
 .form-div{
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 90%;
     align-items: center;
     background-color: rgb(14,15,22);
     justify-content: center;
@@ -27,6 +28,8 @@ html {
     border-width: 3px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
+    font-size: 2.5rem
+
 
     
 }
@@ -57,12 +60,22 @@ color: #fff !important;
   margin-top: 1rem;
   margin-bottom: 1rem;
   background-color: rgb(12, 173, 104);
+  font-size: 2.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 #canceltBtn{
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 4rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
   }
 
 .h3 {

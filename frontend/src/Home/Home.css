@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75%;
+    width: 90%;
     align-items: center;
     text-align: center;
     border-style: solid;
@@ -10,16 +10,19 @@
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
     background-color: rgb(14,15,22);
+    margin-top: 2em;
 }
 
 h1{
     color: white !important;
+    font-size: 6rem !important;
 }
 
 p{
     color: white;
     padding-left: 2rem;
     padding-right: 2rem;
+    font-size: 2.5rem;
 }
 
   #loginBtn{
@@ -31,6 +34,11 @@ p{
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
     margin-right: 4rem;
+    font-size: 2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     
   }
 
@@ -48,6 +56,11 @@ p{
       border-width: 1.5px;
       border-radius: 1rem;
       border-color: rgba(43,45,64,255);
+      font-size: 2.5rem;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   #registerBtn:hover{
         background-color: rgba(43,45,64,255);

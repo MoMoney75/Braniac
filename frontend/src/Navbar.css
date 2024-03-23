@@ -17,13 +17,14 @@ nav > span{
     display: flex;
     margin-top: 2rem;
     margin-bottom: 1rem;
+    margin-left: 2rem;
     background-color: rgb(109,79,198);
     border-style: solid;
     border-width: 1.5px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
     text-decoration: none;
-    font-size: 0.7rem;
+    font-size: 2rem;
   }
 #profileBtn:hover{
       background-color: rgba(43,45,64,255);
@@ -42,12 +43,13 @@ a:hover{
  #logoutBtn{
         margin-top: 2rem;
         margin-bottom: 1rem;
+        margin-left: 2rem;
         background-color: rgb(109,79,198);
         border-style: solid;
         border-width: 1.5px;
         border-radius: 1rem;
         border-color: rgba(43,45,64,255);
-        font-size: 0.7rem;
+        font-size: 2rem;
       }
  #logoutBtn:hover{
           background-color: rgba(43,45,64,255);

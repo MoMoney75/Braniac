@@ -63,7 +63,13 @@ return(
         </div>
 
             <button type='submit' className='btn btn-primary' id='submitBtn' >submit</button>
-            <a href='/' className='btn btn-primary' id='cancelBtn' style={{ backgroundColor: 'rgb(161, 14, 85)' ,marginLeft:'1rem'}}>cancel</a>
+            <a href='/' className= 'btn btn-primary' id='cancelBtn' style={{
+                backgroundColor: 'rgb(161, 14, 85)' ,fontSize:'2.5rem',
+                marginLeft:'1rem',
+                paddingLeft: '2.5rem',
+                paddingRight: '2.5rem',
+                paddingTop: '1rem',
+                paddingBottom: '1rem'}}>cancel</a>
     </form>
 
     {errors.length > 0 && <p style={{ color: 'red' }}>{errors}</p>}

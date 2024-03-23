@@ -1,10 +1,7 @@
 const express = require('express');
 const Game = require('../models/game'); 
 console.log('__dirname:', __dirname);
-const sessionMiddleware = require('../middleware');
-const session = require('express-session');
 const router = express.Router();
-router.use(sessionMiddleware)
 
 /* Handles get,post for user game data */
 router.post('/save', async function(req,res,next){
