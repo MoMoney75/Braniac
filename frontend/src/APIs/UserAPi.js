@@ -1,12 +1,13 @@
 import axios from "axios";
-const BASE_URL = process.env.RENDER_EXTERNAL_HOSTNAME || "http://localhost:3001";
+import BASE_URL from "./db";
+// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
 /* Handles all user info calls such as
    get by username, register and login.
    Also handles user game stats and saveGame */
 class UserAPI {
   static async request(endpoint, data = {}, method = "get") {
-  
+    
 
     const url = `${BASE_URL}/${endpoint}`;
     const params = (method === "get")
@@ -14,7 +15,7 @@ class UserAPI {
         : {};
 
     try {
-      console.log("MAKING REQUEST TO:", REACT_APP_BASE_URL)
+      console.log(BASE_URL)
       return (await axios({ url, method, data, params})).data;
     } catch (e) {
       console.error("API Error:", e);

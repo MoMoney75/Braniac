@@ -6,7 +6,7 @@ if(process.env.NODE_ENV === 'test'){
     DB_URI = "postgresql:///braniac_test";
 }
 else
-{ DB_URI = process.env.DATABASE_URL || "postgresql://jugfpjpx:Qvra6bOpgxwQ22GSRwpfNuS-K1JivKXW@bubble.db.elephantsql.com/jugfpjpx"
+{ DB_URI = process.env.DATABASE_URL || "postgresql:///brainiac"
 };
 
 
