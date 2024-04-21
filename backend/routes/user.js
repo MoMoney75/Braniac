@@ -21,14 +21,14 @@ router.get("/", async function(req,res,next){
 
 
 router.post("/register", async function(req,res,next){
-    const {username, password} = req.body    
+       
     try{
-        const user = await User.register(username, password);
         const validator = jsonSchema.validate(req.body,userSchema);
-
         if(!validator.valid){
             return res.status(400).json({ success: false, user: null, error: errors })
         }
+        const {username, password} = req.body 
+        const user = await User.register(username, password);
         req.session.user = user;
         return res.status(201).json({success : true, user})
     }
@@ -47,7 +47,6 @@ router.post("/register", async function(req,res,next){
 
             const {username,password} = req.body;
             const user = await User.authenticate(username,password)
-            console.log (user);
             req.session.user = user;
             return res.status(200).json({success : true, user});
 

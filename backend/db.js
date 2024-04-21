@@ -9,8 +9,6 @@ else
 { DB_URI = process.env.DATABASE_URL || "postgresql:///brainiac"
 };
 
-
-console.log("DATABASE:", DB_URI)
 let db = new Client({connectionString: DB_URI})
 db.connect();
 

@@ -32,7 +32,7 @@ class User{
 
             const result = await 
             db.query(`INSERT INTO users(username, password) 
-            VALUES ($1, $2) RETURNING username`,[username,hashedPassword]);
+            VALUES ($1, $2) RETURNING username, user_id`,[username,hashedPassword]);
             const user = result.rows[0];
 
             if (username.length < 8 || password.length < 8) {

@@ -30,10 +30,11 @@ async function handleSubmit(e){
         }
        
         else{
+        console.log("RESULT",result)
         const user_id = result.user.user_id;
+        console.log('REGISTERED USER_ID:', user_id)
         sessionStorage.setItem("user_id", user_id);
         navigate('/quiz');
-        setFormData(INITIAL_STATE);
         }
 }
 
