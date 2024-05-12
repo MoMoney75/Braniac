@@ -1,24 +1,25 @@
 #mainGameDiv{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
     padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
 }
 
 
 #question{
-    text-align: center;
+    text-align: start;
     padding-top: 1rem;
+    margin-bottom: 2rem;
     font-size: 2.5rem;
 }
 
 .answers{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: start;
     font-size: 2.5rem;
 }
@@ -27,13 +28,13 @@
 display: flex;
 font-size: 1rem;
 margin-bottom: 2em;
-flex-direction: row;
-align-items: center;
+flex-direction: column;
+align-items: flex-start;
 justify-content: center;
 }
 
 #answerBtn{
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
     background-color: rgb(109,79,198);
     border-style: solid;
@@ -41,11 +42,9 @@ justify-content: center;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
     font-size: 2.5rem;
-    display: flex;
-    flex-direction: column-reverse;
-    
   }
 #answerBtn:hover{
       background-color: rgba(43,45,64,255);
       border-color:rgb(109,79,198) ;
     }
+

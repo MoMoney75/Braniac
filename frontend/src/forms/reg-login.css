@@ -1,9 +1,7 @@
 html {
     height: 100%;
   }
-  body {
-    min-height: 100%;
-  }
+
 
 .main-div{
     display: flex;
@@ -11,16 +9,14 @@ html {
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 245px;
-
-
 }
 
 
 .form-div{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 100%;
+    height: 100%;
     align-items: center;
     background-color: rgb(14,15,22);
     justify-content: center;
@@ -28,19 +24,17 @@ html {
     border-width: 3px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
-    font-size: 2.5rem
+    font-size: 2.5rem;
+    margin: 0.5rem
 
 
     
 }
 
-#form{
-    padding-left: 0px;
-}
-
 label{
 color: #fff !important;
 }
+
 .form-control:focus{
     background-color: rgba(149,98,251,255);
     color: white;
@@ -78,7 +72,8 @@ color: #fff !important;
 
   }
 
-.h3 {
-    color: #fff !important;
 
+.form-div > h1{
+  font-size:1.2em !important;
+  margin-bottom: 1em;
 }

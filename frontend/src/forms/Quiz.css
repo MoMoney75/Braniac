@@ -1,8 +1,8 @@
 #settingsFormDiv{
+    width: 98%;
     display: flex;
     font-size: 3rem;
     flex-direction: column;
-    width: 90%;
     align-items: center;
     background-color: rgb(14,15,22);
     justify-content: center;
@@ -10,13 +10,19 @@
     border-width: 3px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
-    margin: 0 auto 2em;
-
-
-    
+    /* margin: 0 auto 2em; */
 }
 
+select{
+    display: flex;
+    width: 90%;
+
+}
+
+
 #settingsForm{
+    display: flex;
+    flex-direction: column;
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-top: 1rem;
@@ -24,6 +30,7 @@
 }
 
 .settingsLabel{
+    font-size: 3rem;
     padding-right: 1em;
     padding-top: 0.5rem;
 
@@ -35,8 +42,8 @@
 
 
 #settingsSubmitBtn{
-        margin-top: 2rem;
-        margin-bottom: 1rem;
+        margin: auto;
+        margin-top: 1em;
         background-color: rgb(109,79,198);
         border-style: solid;
         border-width: 1.5px;
@@ -53,3 +60,8 @@
           background-color: rgba(43,45,64,255);
           border-color:rgb(109,79,198) ;
         }
+
+
+.inputDiv{
+    margin: 2rem;
+}

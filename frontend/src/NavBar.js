@@ -14,12 +14,15 @@ function NavBar() {
   }
 
   return (
+
+  
+ 
     <nav id="navbar">
       <span>
         <button onClick={()=>{
           navigate('/profile')
         }}className="btn btn-primary" id='profileBtn'>
-        Profile
+        Stats
         </button>
       </span>
 

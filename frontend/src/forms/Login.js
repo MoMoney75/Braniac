@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import UserAPI from '../APIs/UserAPi';
 import { useNavigate } from 'react-router-dom';
-require('./reg-login.css')
+import './reg-login.css'
 
 /** Handles user login, takes username, password
  * adds user_id to session and directs user to quiz settings page
@@ -42,7 +42,7 @@ async function handleSubmit(e){
 return(
     <div className='main-div'>
         <div className='form-div'>
-            <h1 className='h3'> login  </h1>
+            <h1> Welcome! </h1>
     <form onSubmit={handleSubmit} id='form'>
         <div className='mb-3'> 
         <label htmlFor='username' className='form-label'> username </label>

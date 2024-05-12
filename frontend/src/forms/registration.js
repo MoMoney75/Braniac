@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import UserAPI from '../APIs/UserAPi';
 import { useNavigate } from 'react-router-dom';
-import('./reg-login.css')
+import './reg-login.css'
 
 /** Handles user registration(username,password(for now))
  * if successfull, adds user_id to session and directs to
@@ -41,8 +41,8 @@ async function handleSubmit(e){
 return(
     <div className='main-div'>
         <div className='form-div'>
-        <h1 className='h3'>
-            Create an account  
+        <h1 classname='h5'>
+            Register Now! 
         </h1>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}

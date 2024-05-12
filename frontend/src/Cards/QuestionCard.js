@@ -111,15 +111,17 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
                       <label htmlFor={`answer_${idx}`} dangerouslySetInnerHTML={{__html: answer}}></label>
                     </div>
                   ))}
-                  {gameOver === false? <button className="btn btn-primary" id="answerBtn"type="submit">submit</button> : null}
-
+                  {gameOver === false? 
+                  
+                  <button className="btn btn-primary" id="answerBtn"type="submit">submit</button>: null}
+                  
                 </form>
                 <p style={{color:response === 'correct!' ? 'green' : 'red'}}>{response}</p>
                 <p style={{color: 'green'}}>{finalMsg}</p>
 
                 <div id='counters'>
-                <p>score:{score}</p>
-                <p>{`${questionCounter} / ${questions.length}`}</p>
+                <p>score: {score}</p>
+                <p>question: {`${questionCounter} / ${questions.length}`}</p>
                </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ const handleSubmit = async (e) =>{
         formData.category
         );
           if(result.length === 0){
-            setError("Sorry! not enough questions in this category to fulfill your request! Please try again")
+            setError("Sorry! not enough questions in this category to fulfill your request at this time! Please try again")
             navigate('/quiz')
 
           }
@@ -65,45 +65,65 @@ const handleSubmit = async (e) =>{
 return (
 
     <div id='settingsFormDiv'>
-    <p style={{color: 'red'}}>{error}</p>
-        <form id='settingsForm' onSubmit={handleSubmit} style={{ display: gameOver === false ? 'none' : null}}>
-    <div>
+
+
+    {error.length > 0 && (
+      <p style={{ color: 'red' }}>
+        {error} <button className='btn' onClick={() => window.location.reload()}>refresh</button>
+      </p>
+    )}
+
+        <form id='settingsForm' onSubmit={handleSubmit} 
+        style={{ display: gameOver === false ? 'none' : null}}>
+
+    <div className='inputDiv'>
         <label htmlFor="amount" className="form-label settingsLabel">Number of questions</label>
+        <div className='selectDiv'>
         <select
           name="amount"
           value={formData.amount}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
+
           <option value={10}>
           10
           </option>
+
           <option value={15}>
           15
           </option>
+
           <option value={20}>
           20
           </option>
+
+
           <option value={25}>
           25
           </option>
      
         </select>
         </div>
+      </div>
 
-        <div>
-        <label htmlFor="difficulty" className="form-label settingsLabel">Difficulty</label>
+        <div className='inputDiv'>
+
+          <label htmlFor="difficulty" className="form-label settingsLabel">
+            Difficulty
+          </label>
+
         <select className='form-select'
           name="difficulty"
           value={formData.difficulty}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
+
             <option value="easy">Easy (1pt)</option>
             <option value="medium">Medium (3pts)</option>
-            <option value="hard">Hard (5pts)</option>
+            <option value="hard">Hard (5pts)</option> 
+
         </select>
         </div>
 
-       <div>
+       <div className='inputDiv'>
         <label htmlFor="category" className="form-label settingsLabel">Category</label>
         <select
           name="category"
@@ -116,7 +136,7 @@ return (
         </select>
         </div>
 
-        <div>
+        <div className='inputDiv'>
 
         <label htmlFor="type" className="form-label settingsLabel">Type</label>
         <select

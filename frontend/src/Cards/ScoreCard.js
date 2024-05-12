@@ -44,7 +44,7 @@ return(
  <div id='mainScoreDiv'>
     <div className='scoreCardDiv'>
         <div className='scoreCard'>
-            <p className='h5' id='highScore'>High Scores</p>
+            <p className='h2' id='highScore'>High Scores</p>
                 <ul>
                     {highScores.map((score,idx)=>(
                         <li key={idx}>
@@ -58,7 +58,7 @@ return(
 
     <div className='scoreCardDiv'>
         <div className='scoreCard'>
-            <p className='h5' id='lowScore'>Low Scores</p>
+            <p className='h2' id='lowScore'>Low Scores</p>
                 <ul>
                     {lowScore.map((score,idx)=>(
                         <li key={idx}>
