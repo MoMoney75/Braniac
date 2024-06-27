@@ -16,7 +16,7 @@ class Game{
              }}
 
 
-    /* gets user highscores, sorted by categories */
+    /* gets user highscores by user id, sorted by categories */
     static async getHighScore(userId){
         const highScore = await 
         db.query
@@ -24,20 +24,28 @@ class Game{
         FROM user_scores
         WHERE user_id = $1
         ORDER BY category, scores DESC;`, [userId])
-                                        
+                                 
               return highScore.rows
         
     }
 
     /* gets user low scores, sorted by categories */
-    static async getLowScore(user_id){
+    static async getLowScore(userId){
+           //NEW CODE HERE:
+        /* If userId is not valid or does not exist, throw error */
+        // if(!userId){
+        //     console.debug("userId:", userId)
+        //     throw new Error("Invalid userId, unable to get user low scores")
+        // }
+        // //END NEW CODE
+        
          const lowscore = await 
          db.query(`SELECT DISTINCT ON (category) category, scores as minScore
          FROM user_scores
          WHERE user_id = $1
-         ORDER BY category, scores;`, [user_id])
+         ORDER BY category, scores;`, [userId])
                                             
-            return lowscore.rows
+            return lowscore.rows;
 }
 }
 

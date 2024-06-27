@@ -1,10 +1,12 @@
 import axios from "axios";
 
+/* GameApi handles all calls to backend relating to fetching
+   data for starting a game */
 class GameApi{
-    static token = null;
-    /*generate a session token for appending to API request
+    /* Generate a session token for appending to API request
      https://opentdb.com/api.php?amount=10&token=YOURTOKENHERE
-    gets deleted after 6 hours of inactivity */
+    PLEASE NOTE: Token expires after 6 hours of inactivity */
+    static token = null;
 
     static async createToken(){
         const getTokenUrl = 'https://opentdb.com/api_token.php?command=request'
@@ -13,9 +15,7 @@ class GameApi{
         return this.token
     }
 
-
-    /*Only 1 Category can be requested per API Call. 
-    To get questions from any category, don't specify a category.
+    /* Only 1 Category can be requested per API Call. 
     Maximum of 50 Questions can be retrieved per call. */
     static async getCategories(){
         try{
@@ -28,9 +28,8 @@ class GameApi{
         }
     }
     
-    /** MAIN API CALL, Will get questions based on user form inputs */
+    /* Will get questions based on user form inputs */
     static async getQuestions(amount,type,difficulty, category){
-
         try{
             const questionData = [];
             await this.createToken();
@@ -62,7 +61,7 @@ class GameApi{
             console.log("Sorry, not enough questions for this category");
         }
 
-        /* loop through results and pick out needed information
+        /* Loop through results and pick out needed information
             for QuestionCard, makes easier to swift through data */
         for (let i = 0; i < result.data.results.length; i++) {
             const questionObject = {};

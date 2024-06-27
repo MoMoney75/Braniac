@@ -154,10 +154,8 @@ return (
         <button className="btn btn-primary" id='settingsSubmitBtn'>submit</button>
         </form>  
 
-        {!gameOver && questions.length > 0 ? <QuestionCard  questions={questions} increment={increment} gameOver={gameOver} setGameOver={setGameOver}/> : null }
+        {!gameOver && questions.length > 0 ? <QuestionCard questions={questions} increment={increment} gameOver={gameOver} setGameOver={setGameOver}/> : null }
     </div>
-
-
            
 )
 }

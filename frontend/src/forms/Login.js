@@ -6,35 +6,28 @@ import './reg-login.css'
 /** Handles user login, takes username, password
  * adds user_id to session and directs user to quiz settings page
  */
-function LoginForm(){
+function LoginForm({handleChange,setFormData,formData}){
 const navigate = useNavigate();
-const INITIAL_STATE = {
-    username: '',
-    password: '',
-}
-const [formData, setFormData] = useState(INITIAL_STATE);
 const [errors,setErrors] = useState([])
-    
-function handleChange(e){
-const {name,value} = e.target;
-setFormData(data =>({...data,[name]: value}
-    ))}
 
-
-/*Logs user in, adds user_id to sessionStorage */
+/* Logs user in, adds user_id to sessionStorage */
 async function handleSubmit(e){
         e.preventDefault();
         const result = await UserAPI.login(formData);
-        /* checks for invalid credentials */
+
+        /* Checks for invalid credentials and adds to errors
+           if errors occur, displays error to user*/
         if(!result){
             setErrors("Invalid username or password")
-            setFormData(INITIAL_STATE)
+            setFormData({
+                "username": '',
+                "password": ''
+            })
         }
         
         else{
         sessionStorage.setItem('user_id', result.user.user_id)
         navigate('/quiz')
-        setFormData(INITIAL_STATE);
         }
 
 }

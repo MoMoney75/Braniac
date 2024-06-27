@@ -3,6 +3,8 @@ import UserAPI from '../APIs/UserAPi';
 import './Questions.css'
 
 function QuestionCard({questions, increment, gameOver, setGameOver}){
+    /* QuestionCard props are being passed down from
+        ../forms/QuizSettings.js */
 
     const [selectedAnswer, setSelectedAnswer] = useState('');
     const [currQuestionIdx, setCurrQuestionIdx] = useState(0);
@@ -13,6 +15,7 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
     const currQuestion = questions[currQuestionIdx];
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const finalCategory = questions[0].category;
+    const user_id = +sessionStorage.getItem("user_id")
 
     /* shuffle function used to shuffle the answers shown to a user*/
     function shuffleArray(array) {
@@ -22,7 +25,7 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
       }
       return array;
   }
-  /* shuffled answers*/
+  /* Shuffles the answers for a user to choose from */
   useEffect(() => {
     if (currQuestion) {
       const answers = [...currQuestion.incorrectAnswers, currQuestion.correctAnswer];
@@ -31,13 +34,14 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
   }, [currQuestion, currQuestionIdx]);
 
     /** Retrieve user_id from session for saveGame()*/
-    const user_id = +sessionStorage.getItem("user_id")
-    
+    // const user_id = +sessionStorage.getItem("user_id")
+  
     const handleChange = (e)=>{
         setSelectedAnswer(e.target.value)
     }
 
-    /*Reset all states when game is over*/
+    /* Reset all game states when game is over */
+
     const resetGame = ()=>{
       setCurrQuestionIdx(0)
       setScore(0)
@@ -47,7 +51,10 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
       setFinalMsg('')
     }
 
-    const handleSubmit =  async (e, currentQuestion) => {
+    /* Handles submission of user responses */
+    // NEW CODE ---> REMOVED "currentQuestion"
+    //as a parameter for handleSubmit function, unsure if neeeded
+    const handleSubmit =  async(e) => {
         e.preventDefault();
 
         if(selectedAnswer === currQuestion.correctAnswer){
@@ -57,24 +64,26 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
           setResponse('incorrect!')
       }
 
-  
-      /* handles get next question */
+      /* handles get next question to displace to user
+         uses setTimeout for a slight delay to improve 
+         user experience */
       if (currQuestionIdx + 1 < questions.length) {
-        setTimeout(async() =>{
+        setTimeout( async() =>{
           setCurrQuestionIdx(currQuestionIdx + 1);
           setQuestionCounter(questionCounter + 1);
           setResponse('');
         },1500)
       }
 
-       /** IF final answer is correct, make sure the final score
+       /** If final answer is correct, make sure the final score
         * accounts for the final answer being correct
         */
         let finalScore;
         if(selectedAnswer === currQuestion.correctAnswer && currQuestionIdx + 1 >= questions.length){
           finalScore = score+increment;
           setFinalMsg(`Game over! Your final score is ${finalScore}`)
-          setTimeout(async()=>{
+
+          setTimeout( async()=>{
             await UserAPI.saveGame(user_id, finalScore, finalCategory)
             resetGame();
           },4000)
@@ -86,7 +95,6 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
         else if(currQuestionIdx + 1 >= questions.length && selectedAnswer !== currQuestion.correctAnswer) {
           setFinalMsg(`Game over! Your final score is ${score}`)
           setTimeout(async()=>{
-            
             await UserAPI.saveGame(user_id, score, finalCategory);
             resetGame();
         },4000)

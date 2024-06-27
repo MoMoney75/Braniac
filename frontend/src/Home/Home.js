@@ -7,7 +7,7 @@ function Home(){
         <div id='main-div'>
             <h1 className='h1'>Welcome To Brainiac</h1>
                 <p>
-                    Test your knowledge across a variety of different categories containing hundreds of questions! 
+                    Test your knowledge across a variety of categories containing hundreds of questions! 
                     Create an account today and get started!
                 </p>
       

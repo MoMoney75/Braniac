@@ -1,6 +1,7 @@
 const db = require('../db')
 const bcrypt = require('bcrypt')
 
+/* User class handles basic user get/post menthods */
 /* Handles user authentication: login, register, find user by username */
 class User{
     static async getUser(username){
@@ -24,10 +25,13 @@ class User{
                 return user;
              }
             }
+
+            /* error handling for incorrect username/password */
             throw new Error("Invalid username or password")
         }
-    static async register(username,password){
 
+    static async register(username,password){
+        
             const hashedPassword = await bcrypt.hash(password,12);
 
             const result = await 

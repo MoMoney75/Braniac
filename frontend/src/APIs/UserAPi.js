@@ -1,21 +1,18 @@
 import axios from "axios";
 import BASE_URL from "./db";
-// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 
-/* Handles all user info calls such as
+/* UserAPI handles all user info calls such as
    get by username, register and login.
    Also handles user game stats and saveGame */
 class UserAPI {
   static async request(endpoint, data = {}, method = "get") {
     
-
     const url = `${BASE_URL}/${endpoint}`;
     const params = (method === "get")
         ? data
         : {};
 
     try {
-      console.log(BASE_URL)
       return (await axios({ url, method, data, params})).data;
     } catch (e) {
       console.error("API Error:", e);
@@ -43,6 +40,7 @@ class UserAPI {
     }
 
   static async getLowScore(user_id){
+  
       const response = await this.request(`game/lowscore/${user_id}`)
       return response;
     }

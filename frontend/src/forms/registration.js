@@ -7,32 +7,24 @@ import './reg-login.css'
  * if successfull, adds user_id to session and directs to
  * quiz settings page
 */
-function RegistrationForm(){
-const INITIAL_STATE = {
-    username: '',
-    password: '',
-}
+function RegistrationForm({formData,setFormData,handleChange}){
+
 const navigate = useNavigate();
-const [formData, setFormData] = useState(INITIAL_STATE);
 const [error, setError] = useState(null);
     
-function handleChange(e){
-const {name,value} = e.target;
-setFormData(data =>({...data,[name]: value}
-    ))}
-
-
 async function handleSubmit(e){
     e.preventDefault();
     const result = await UserAPI.register(formData);
         if(!result){
            setError("Username and password must be 8-25 characters long")
+           setFormData({
+            "username": '',
+            "password": ''
+        })
         }
        
         else{
-        console.log("RESULT",result)
         const user_id = result.user.user_id;
-        console.log('REGISTERED USER_ID:', user_id)
         sessionStorage.setItem("user_id", user_id);
         navigate('/quiz');
         }

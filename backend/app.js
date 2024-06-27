@@ -9,14 +9,14 @@ app.use(sessionMiddleware)
 app.use(express.json())
 app.use(cors());
 app.use('/users', userRoutes); // Mount the user router
-app.use('/game', gameRoutes)
+app.use('/game', gameRoutes)   // Mount the game router
 
-/** Handle 404 errors -- this matches everything */
+/* Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
     return next(new Error("PAGE NOT FOUND"));
   });
   
-  /** Generic error handler; anything unhandled goes here. */
+  /* Generic error handler; anything unhandled goes here. */
   app.use(function (err, req, res, next) {
     if (process.env.NODE_ENV !== "test") console.error(err.stack);
     const status = err.status || 500;
