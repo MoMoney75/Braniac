@@ -10,8 +10,7 @@ import PrivateRoute from './PrivateRoute';
 
 
 /** MAIN APP SKELETON */
-function Skeleton({handleChange,formData, setFormData,categories,
-    user_id}){
+function Skeleton({login, user_id,register,categories}){
 
 return(
 
@@ -20,14 +19,9 @@ return(
             <Route path='/' element={<Home  />} />
 
             <Route  path='/register' element={<RegistrationForm 
-                                    handleChange={handleChange}
-                                    formData={formData} 
-                                    setFormData={setFormData}/>} /> 
+                                    register={register}/>} /> 
 
-            <Route  path='/login' element={<LoginForm 
-                                  handleChange={handleChange}
-                                  formData={formData}
-                                  setFormData={setFormData}/>} /> 
+            <Route  path='/login' element={<LoginForm login={login}/>} /> 
 
             <Route  path='/quiz' element={<PrivateRoute>
                 <QuizSettings categories={categories} />

@@ -12,11 +12,13 @@ class UserAPI {
         ? data
         : {};
 
-    try {
-      return (await axios({ url, method, data, params})).data;
-    } catch (e) {
-      console.error("API Error:", e);
-    }
+        try {
+          return (await axios({ url, method, data, params})).data;
+        } catch (err) {
+          console.error("API Error:", err.response);
+          let message = err.response.data.error.message;
+          throw Array.isArray(message) ? message : [message];
+        }
   }
 
   static async getUser(username){

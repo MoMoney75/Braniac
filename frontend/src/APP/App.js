@@ -7,26 +7,29 @@ import Logo from '../Home/Logo';
 
 
 function App() {
-  const INITIAL_STATE = {
-    username: '',
-    password: '',
-}
   const [categories, setCategories] = useState([]);
-  const [formData, setFormData] = useState(INITIAL_STATE)
-  const [error, setError] = useState("")
-  const user_id = sessionStorage.getItem('user_id')
+  const user_id = sessionStorage.getItem("user_id")
 
-/*Generic handle change function for login and 
-  registration forms */
-function handleChange(e){
-  const {name,value} = e.target;
-  setFormData(data =>({...data,[name]: value}
-  ))}
-  /* Gets saved scores for logged in users */
-  // useEffect(()=>{
-  //   getLowScores();
-  //   getHighScores();
-  // },[]);
+async function register(signUpData){
+  try{
+    const result = await UserAPI.register(signUpData)
+    return ({success: true, result})
+  }
+ catch(err){
+  return ({success: false, err: err})
+ }
+} 
+
+async function login(loginData){
+  try{
+    const result = await UserAPI.login (loginData)
+    return ({success: true, result})
+  }
+
+  catch(err){
+    return ({success: false, err:err})
+  }
+}
   
   /* loads list of all possible categories from API, allowing for
       real time available categories for user to choose from */
@@ -37,39 +40,11 @@ function handleChange(e){
   }; getCategories()
 },[]);
 
-/* Handles retrieving user lowscores and passes down to
-     Scorecard.js App.js --> Routes.js --> Scorecard.js */ 
-    // const getLowScores = async()=>{
-    // try{
-    //    const result =  await UserAPI.getLowScore(user_id);
-    //    console.log("RESULT IN SCORECARD:", result)
-    //    setLowScores(result.result);
-    // }
-  //   catch(e){
-  //     setError("Error retrieving low scores, please try again later")
-  //   }
-  // }
-
-  /* Handles retrieving user highscores and passes down to
-     Scorecard.js App.js --> Routes.js --> Scorecard.js */ 
-  // const getHighScores = async()=>{
-  //   try{
-  //   const result =  await UserAPI.getHighScore(user_id);
-  //   setHighScores(result.result);
-  // }
-  // catch(e){
-  // setError("Error retrieving high scores, please try again later")
-  // }
-  //};
-
-
-
   return (
     <div className='App'>
         <Logo />
-       <Skeleton categories={categories} error={error}
-       handleChange={handleChange} formData={formData}
-       setFormData={setFormData} user_id={user_id}/>
+       <Skeleton login={login} register={register}categories={categories}
+       user_id={user_id}/>
     </div>
   );
 }

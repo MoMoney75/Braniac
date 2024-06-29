@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import UserAPI from '../APIs/UserAPi';
 import { useNavigate } from 'react-router-dom';
 import './reg-login.css'
 
@@ -7,38 +6,45 @@ import './reg-login.css'
  * if successfull, adds user_id to session and directs to
  * quiz settings page
 */
-function RegistrationForm({formData,setFormData,handleChange}){
+function RegistrationForm({register,handleChange}){
 
 const navigate = useNavigate();
-const [error, setError] = useState(null);
+const [errors, setError] = useState([]);
+const [formData,setFormData] = useState({
+    username: "",
+    password: ""
+})
+
+function handleChange(e){
+    const {name,value} = e.target;
+    setFormData(data =>({...data,[name]: value}
+    ))}
     
 async function handleSubmit(e){
-    e.preventDefault();
-    const result = await UserAPI.register(formData);
-        if(!result){
-           setError("Username and password must be 8-25 characters long")
-           setFormData({
-            "username": '',
-            "password": ''
-        })
+        e.preventDefault();
+
+        let result = await register(formData)
+        if(result.success === true){
+        sessionStorage.setItem('user_id', result.result.user.user_id)
+        navigate('/quiz')
+        setFormData({
+            username: "",
+            password: ""})
         }
-       
-        else{
-        const user_id = result.user.user_id;
-        sessionStorage.setItem("user_id", user_id);
-        navigate('/quiz');
+        else if(result.success === false){
+            console.log('ERROR, UNABLE TO REGISTER USER,',result)
+            setError(result.err)
         }
-}
+        }      
+
 
 return(
     <div className='main-div'>
         <div className='form-div'>
-        <h1 classname='h5'>
+        <h1 className='h5'>
             Register Now! 
         </h1>
-
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-     
+        {errors.length ? errors.map(e => <p style={{color: 'red'}}>{e}</p>) : null}
         <form onSubmit={handleSubmit} id='form'>
        
             <div className='mb-3'> 

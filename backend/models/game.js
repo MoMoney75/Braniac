@@ -1,3 +1,4 @@
+const { error } = require('console');
 const db = require ('../db')
 
 class Game{
@@ -13,37 +14,39 @@ class Game{
                               VALUES($1, $2, $3) RETURNING user_id, scores, category`,[userId,score,category])
                                             
                 return result.rows[0];
-             }}
+             }
+            else{
+                throw new Error("Invalid user id, unable to save game")
+            }}
 
 
-    /* gets user highscores by user id, sorted by categories */
-    static async getHighScore(userId){
+    /* Gets user highscores by user id, sorted by categories */
+    static async getHighScore(user_id){
+        if(!user_id){
+            throw new Error("User not found, unable to fetch scores")
+        }
+
         const highScore = await 
         db.query
         (`SELECT DISTINCT ON (category) category, scores as maxScore
         FROM user_scores
         WHERE user_id = $1
-        ORDER BY category, scores DESC;`, [userId])
+        ORDER BY category, scores DESC;`, [user_id])
                                  
               return highScore.rows
         
     }
 
-    /* gets user low scores, sorted by categories */
-    static async getLowScore(userId){
-           //NEW CODE HERE:
-        /* If userId is not valid or does not exist, throw error */
-        // if(!userId){
-        //     console.debug("userId:", userId)
-        //     throw new Error("Invalid userId, unable to get user low scores")
-        // }
-        // //END NEW CODE
-        
+    /* Gets user low scores, sorted by categories */
+    static async getLowScore(user_id){
+        if(!user_id){
+            throw new Error("User not found, unable to fetch scores")
+        }
          const lowscore = await 
          db.query(`SELECT DISTINCT ON (category) category, scores as minScore
          FROM user_scores
          WHERE user_id = $1
-         ORDER BY category, scores;`, [userId])
+         ORDER BY category, scores;`, [user_id])
                                             
             return lowscore.rows;
 }

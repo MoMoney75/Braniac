@@ -6,36 +6,43 @@ import './reg-login.css'
 /** Handles user login, takes username, password
  * adds user_id to session and directs user to quiz settings page
  */
-function LoginForm({handleChange,setFormData,formData}){
+function LoginForm({login}){
 const navigate = useNavigate();
 const [errors,setErrors] = useState([])
+const [formData, setFormData] = useState({
+    username : "",
+    password: ""
+})
+function handleChange(e){
+    const {name,value} = e.target;
+    setFormData(data =>({...data,[name]: value}
+    ))}
 
 /* Logs user in, adds user_id to sessionStorage */
 async function handleSubmit(e){
         e.preventDefault();
-        const result = await UserAPI.login(formData);
+        const result = await login(formData)
 
         /* Checks for invalid credentials and adds to errors
            if errors occur, displays error to user*/
-        if(!result){
+        if(result.success === false){
             setErrors("Invalid username or password")
             setFormData({
                 "username": '',
                 "password": ''
             })
         }
-        
-        else{
-        sessionStorage.setItem('user_id', result.user.user_id)
+        console.log(result)
+        sessionStorage.setItem('user_id', result.result.user.user_id)
         navigate('/quiz')
-        }
-
 }
 
 return(
     <div className='main-div'>
         <div className='form-div'>
             <h1> Welcome! </h1>
+
+    {errors.length > 0 && <p style={{ color: 'red' }}>{errors}</p>}
     <form onSubmit={handleSubmit} id='form'>
         <div className='mb-3'> 
         <label htmlFor='username' className='form-label'> username </label>
@@ -65,7 +72,6 @@ return(
                 paddingBottom: '1rem'}}>cancel</a>
     </form>
 
-    {errors.length > 0 && <p style={{ color: 'red' }}>{errors}</p>}
     </div>
     
 </div>)};

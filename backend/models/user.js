@@ -1,11 +1,19 @@
 const db = require('../db')
 const bcrypt = require('bcrypt')
+const  {
+    ExpressError,
+    NotFoundError,
+    UnauthorizedError,
+    BadRequestError,
+    ForbiddenError,
+  } = require("../expressErrors/errors")
 
 /* User class handles basic user get/post menthods */
 /* Handles user authentication: login, register, find user by username */
 class User{
+
     static async getUser(username){
-        const result = await db.query(`SELECT user_id, username FROM users
+        const result = await db.query(`SELECT username FROM users
                                         WHERE username = $1`, [username])
 
         const user = result.rows[0];
@@ -16,7 +24,10 @@ class User{
             const result = await db.query(`SELECT user_id, username, password FROM users WHERE
             username = $1`, [username])
             const user = result.rows[0];
-            
+            if(user.length === 0){
+                throw new BadRequestError("Invalid username or password")
+            }
+
             if(user){
                 const isValid = await bcrypt.compare(password, user.password);
             
@@ -27,21 +38,26 @@ class User{
             }
 
             /* error handling for incorrect username/password */
-            throw new Error("Invalid username or password")
+            
         }
 
     static async register(username,password){
-        
-            const hashedPassword = await bcrypt.hash(password,12);
 
-            const result = await 
+        const duplicateUser = await db.query(`SELECT username FROM
+        users WHERE username = $1`,[username])
+
+        if(duplicateUser.rows[0]){
+            throw new BadRequestError("Username already exists, Please login or try a different username");
+        }
+
+        const hashedPassword = await bcrypt.hash(password,12);
+        
+        const result = await 
             db.query(`INSERT INTO users(username, password) 
             VALUES ($1, $2) RETURNING username, user_id`,[username,hashedPassword]);
-            const user = result.rows[0];
+           ;
 
-            if (username.length < 8 || password.length < 8) {
-                throw new Error("Username and password must be atleast 8 characters long");
-            }
+            const user = result.rows[0]
              return user;       
     }
 
