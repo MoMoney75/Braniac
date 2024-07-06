@@ -5,21 +5,23 @@ import GameApi from '../APIs/GameApi';
 import UserAPI from '../APIs/UserAPi';
 import Logo from '../Home/Logo';
 
-
 function App() {
   const [categories, setCategories] = useState([]);
-  const user_id = sessionStorage.getItem("user_id")
 
+  /*Handles new user registration , passed down to RegistrationForm.js
+    through Routes.js */
 async function register(signUpData){
   try{
     const result = await UserAPI.register(signUpData)
     return ({success: true, result})
   }
- catch(err){
-  return ({success: false, err: err})
+  catch(err){
+    return ({success: false, err: err})
  }
 } 
 
+/*Handles user login, passed down to loginForm.js
+    through Routes.js */
 async function login(loginData){
   try{
     const result = await UserAPI.login (loginData)
@@ -43,8 +45,7 @@ async function login(loginData){
   return (
     <div className='App'>
         <Logo />
-       <Skeleton login={login} register={register}categories={categories}
-       user_id={user_id}/>
+       <Skeleton login={login} register={register}categories={categories}/>
     </div>
   );
 }

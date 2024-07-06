@@ -1,6 +1,5 @@
-const { error } = require('console');
 const db = require ('../db')
-
+const { BadRequestError } = require('../expressErrors/errors')
 class Game{
     
     /* Upon game completion, game results are added to user_scores */
@@ -16,14 +15,14 @@ class Game{
                 return result.rows[0];
              }
             else{
-                throw new Error("Invalid user id, unable to save game")
+                throw new BadRequestError("Error while attempting to save game")
             }}
 
 
     /* Gets user highscores by user id, sorted by categories */
     static async getHighScore(user_id){
         if(!user_id){
-            throw new Error("User not found, unable to fetch scores")
+            throw new BadRequestError("User not found, unable to get user scores")
         }
 
         const highScore = await 
@@ -40,7 +39,7 @@ class Game{
     /* Gets user low scores, sorted by categories */
     static async getLowScore(user_id){
         if(!user_id){
-            throw new Error("User not found, unable to fetch scores")
+            throw new BadRequestError("User not found, unable to get scores")
         }
          const lowscore = await 
          db.query(`SELECT DISTINCT ON (category) category, scores as minScore

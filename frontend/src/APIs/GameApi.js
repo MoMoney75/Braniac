@@ -48,7 +48,6 @@ class GameApi{
             }
 
             let result = await axios.get(url);
-            console.log("QUESTIONS RESULT FRONTEND:", result)
 
         /* handles token reset when token expires */
         if(result.data.response_code === 3 || result.data.response_code === 4){
@@ -59,6 +58,7 @@ class GameApi{
         fill customer request*/
         if(result.data.response_code === 4 ){
             console.log("Sorry, not enough questions for this category");
+            throw new Error("Not enough available questions in the selected category, please try again")
         }
 
         /* Loop through results and pick out needed information
@@ -75,8 +75,7 @@ class GameApi{
         return questionData;
     }
         catch(e){
-
-            throw new Error("BAD REQUEST ERROR",e, 404);
+            throw new Error("BAD REQUEST ERROR:",e, 404);
         }
     }
 }

@@ -14,9 +14,6 @@ function NavBar() {
   }
 
   return (
-
-  
- 
     <nav id="navbar">
       <span>
         <button onClick={()=>{

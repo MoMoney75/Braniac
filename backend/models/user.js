@@ -1,11 +1,7 @@
 const db = require('../db')
 const bcrypt = require('bcrypt')
 const  {
-    ExpressError,
-    NotFoundError,
-    UnauthorizedError,
     BadRequestError,
-    ForbiddenError,
   } = require("../expressErrors/errors")
 
 /* User class handles basic user get/post menthods */

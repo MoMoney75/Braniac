@@ -15,6 +15,7 @@ router.get("/", async function(req,res,next){
         return res.statusCode(200).json({success : true, user})
     }
     catch(err){
+        console.log("ERROR GETTING USERS IN ROUTES:", err)
         return next(err);
     }
 })
@@ -25,7 +26,8 @@ router.post("/register", async function(req,res,next){
     try{
         const validator = jsonSchema.validate(req.body,userSchema);
         if(!validator.valid){
-        throw new BadRequestError("Username and password must be between 8-25 characters long")
+        const errors = validator.errors.map(e => e.stack);
+        throw new BadRequestError(errors)
         }
         const {username, password} = req.body ;
 
@@ -36,7 +38,7 @@ router.post("/register", async function(req,res,next){
         return res.status(201).json({success : true, user})
     }
     catch(err){
-        console.log("ERROR IN CATCH BLOCK IN ROUTES:", err)
+        console.log("ERROR /REGISTER IN ROUTES:", err)
         return next(err)
     }});
 
@@ -56,7 +58,7 @@ router.post("/register", async function(req,res,next){
 
     }
         catch(err){
-            console.log("ERROR IN CATCH BLOCK IN ROUTES:", err)
+            console.log("ERROR AT LOGIN IN ROUTES:", err)
             return next(err)
         }
     })
@@ -66,7 +68,6 @@ router.post("/register", async function(req,res,next){
     router.post('/logout', async function(req,res,next){
         req.session.destroy(function(e){
             if(e){
-
             return res.status(500).json({success:false, error: e.message})
             }
 

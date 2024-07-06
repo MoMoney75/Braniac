@@ -8,14 +8,10 @@ import QuestionCard from '../Cards/QuestionCard';
 import ScoreCard from '../Cards/ScoreCard';
 import PrivateRoute from './PrivateRoute';
 
-
 /** MAIN APP SKELETON */
-function Skeleton({login, user_id,register,categories}){
-
+function Skeleton({login,register,categories}){
 return(
-
     <Routes>    
-
             <Route path='/' element={<Home  />} />
 
             <Route  path='/register' element={<RegistrationForm 
@@ -34,13 +30,9 @@ return(
             
             <Route path='/profile' element={
             <PrivateRoute> 
-                <ScoreCard user_id={user_id}/>
+                <ScoreCard/>
             </PrivateRoute>} />
-
-    </Routes>
-
-)
-
+    </Routes>)
 }
 
 export default Skeleton;

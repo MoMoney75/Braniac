@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import UserAPI from '../APIs/UserAPi';
 import { useNavigate } from 'react-router-dom';
 import './reg-login.css'
 
@@ -32,7 +31,6 @@ async function handleSubmit(e){
                 "password": ''
             })
         }
-        console.log(result)
         sessionStorage.setItem('user_id', result.result.user.user_id)
         navigate('/quiz')
 }

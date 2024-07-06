@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import GameApi from "../APIs/GameApi";
 import QuestionCard from "../Cards/QuestionCard";
 
-
-
 /* Handles user form input for setting up each
    individual game, take user to /quiz upon submission */
 
@@ -40,12 +38,11 @@ const handleSubmit = async (e) =>{
         formData.difficulty,
         formData.category
         );
+        
           if(result.length === 0){
             setError("Sorry! not enough questions in this category to fulfill your request at this time! Please try again")
             navigate('/quiz')
-
           }
-          console.log("RESULT IN FRONTEND:",result)
 
         /* handles scoring system based on user difficulty choice */
         if(formData.difficulty === 'medium'){
@@ -56,17 +53,9 @@ const handleSubmit = async (e) =>{
           setIncrement(5)
         }
         setQuestions(result)
-        setFormData(INITIAL_STATE);
-       
-
-}
-
-
+        setFormData(INITIAL_STATE);}
 return (
-
     <div id='settingsFormDiv'>
-
-
     {error.length > 0 && (
       <p style={{ color: 'red' }}>
         {error} <button className='btn' onClick={() => window.location.reload()}>refresh</button>

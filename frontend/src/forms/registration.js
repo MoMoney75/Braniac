@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import './reg-login.css'
-
 /** Handles user registration(username,password(for now))
  * if successfull, adds user_id to session and directs to
  * quiz settings page
@@ -22,8 +21,8 @@ function handleChange(e){
     
 async function handleSubmit(e){
         e.preventDefault();
-
         let result = await register(formData)
+
         if(result.success === true){
         sessionStorage.setItem('user_id', result.result.user.user_id)
         navigate('/quiz')
@@ -32,12 +31,9 @@ async function handleSubmit(e){
             password: ""})
         }
         else if(result.success === false){
-            console.log('ERROR, UNABLE TO REGISTER USER,',result)
-            setError(result.err)
-        }
+            setError(result.err)}
         }      
-
-
+        
 return(
     <div className='main-div'>
         <div className='form-div'>
