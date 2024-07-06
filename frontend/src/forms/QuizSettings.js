@@ -40,7 +40,7 @@ const handleSubmit = async (e) =>{
         );
         
           if(result.length === 0){
-            setError("Sorry! not enough questions in this category to fulfill your request at this time! Please try again")
+            setError("Sorry! not enough questions in this category to fulfill your request at this time! Please")
             navigate('/quiz')
           }
 
@@ -58,7 +58,7 @@ return (
     <div id='settingsFormDiv'>
     {error.length > 0 && (
       <p style={{ color: 'red' }}>
-        {error} <button className='btn' onClick={() => window.location.reload()}>refresh</button>
+        {error} <button className='btn' onClick={() => window.location.reload()}>Try again</button>
       </p>
     )}
 
