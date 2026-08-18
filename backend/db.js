@@ -8,7 +8,7 @@ if(process.env.NODE_ENV === 'test'){
     DB_URI = "postgresql:///braniac_test";
 }
 else{ 
-    DB_URI = process.env.DATABASE_URL || "postgresql:///brainiac"
+    DB_URI = process.env.DATABASE_URL
 };
 
 let db = new Client({connectionString: DB_URI})

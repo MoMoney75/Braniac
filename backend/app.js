@@ -10,7 +10,11 @@ app.use(express.json())
 app.use(cors());
 app.use('/users', userRoutes); // Mount the user router
 app.use('/game', gameRoutes)   // Mount the game router
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../Frontendv2/build", "index.html"));
+});
 /* Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
     return next(new Error("PAGE NOT FOUND"));

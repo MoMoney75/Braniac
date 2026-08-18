@@ -1,9 +1,10 @@
 import axios from "axios";
-import BASE_URL from "./db";
+//import BASE_URL from "./db";
 
 /* UserAPI handles all user info calls such as
    get by username, register and login.
    Also handles user game stats and saveGame */
+   const BASE_URL = ""
 class UserAPI {
   static async request(endpoint, data = {}, method = "get") {
     
