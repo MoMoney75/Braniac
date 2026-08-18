@@ -13,7 +13,7 @@ app.use('/game', gameRoutes)   // Mount the game router
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../Frontendv2/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
 });
 /* Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {
