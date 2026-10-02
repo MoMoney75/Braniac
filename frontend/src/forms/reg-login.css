@@ -56,22 +56,22 @@ color: #fff !important;
   margin-top: 1rem;
   margin-bottom: 1rem;
   background-color: rgb(12, 173, 104);
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
 
-#canceltBtn{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 4rem;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-
+#cancelBtn{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: rgba(196, 10, 90, 0.762);
+  font-size: 1.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   }
 
 

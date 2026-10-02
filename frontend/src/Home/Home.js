@@ -9,7 +9,7 @@ function Home(){
             <h1 id="welcome-h1">Welcome to Brainiac</h1>
                 <p>Genious? Prove it.</p>
       
-        <div id='buttonDiv'>
+        <div className='buttonDiv'>
             <a href="/login">
                 <button className='btn-lg' id='loginBtn'> Login </button>
             </a>

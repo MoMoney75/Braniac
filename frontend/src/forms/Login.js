@@ -63,15 +63,11 @@ return(
         onChange={handleChange} 
         className='form-control form-control-sm'/>
         </div>
-
-            <button type='submit' className='btn btn-primary' id='submitBtn' >Submit</button>
-            <a href='/' className= 'btn btn-primary' id='cancelBtn' style={{
-                backgroundColor: 'rgb(161, 14, 85)' ,fontSize:'2.5rem',
-                marginLeft:'1rem',
-                paddingLeft: '2.5rem',
-                paddingRight: '2.5rem',
-                paddingTop: '1rem',
-                paddingBottom: '1rem'}}>Cancel</a>
+            <div className='buttonDiv'>
+            <button type='submit' className='btn' id='submitBtn'> Submit </button>
+            <button className='btn' id='cancelBtn' 
+            onClick={()=>{navigate('/')}}> Cancel </button>
+            </div>
     </form>
 
     </div>
