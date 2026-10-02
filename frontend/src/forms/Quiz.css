@@ -1,6 +1,7 @@
 #settingsFormDiv{
-    width: 98%;
     display: flex;
+    min-height: 100vh;
+    width: 90vw;
     font-size: 3rem;
     flex-direction: column;
     align-items: center;
@@ -10,7 +11,24 @@
     border-width: 3px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
-    /* margin: 0 auto 2em; */
+    box-shadow: 3px 4px 10px 5px rgba(52, 235,97, 0.75);
+    margin: 1em;
+    animation: neonGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  from {
+    /* Tight, sharp glow */
+    box-shadow: 
+      0 0 4px #2ecc71,
+      0 0 10px #2ecc71;
+  }
+  to {
+    /* Wide, soft glow */
+    box-shadow: 
+      0 0 10px #2ecc71,
+      0 0 30px #2ecc71;
+  }
 }
 
 select{
@@ -26,7 +44,7 @@ select{
     padding-top: 4rem;
     padding-bottom: 4rem;
     margin-top: 1rem;
-
+    width: 90vw;
 }
 
 .settingsLabel{

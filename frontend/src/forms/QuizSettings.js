@@ -55,18 +55,19 @@ const handleSubmit = async (e) =>{
         setQuestions(result)
         setFormData(INITIAL_STATE);}
 return (
-    <div id='settingsFormDiv'>
+  
+    <div classname="container-fluid-sm"id='settingsFormDiv'>
     {error.length > 0 && (
       <p style={{ color: 'red' }}>
         {error} <button className='btn' onClick={() => window.location.reload()}>Try again</button>
       </p>
     )}
 
-        <form id='settingsForm' onSubmit={handleSubmit} 
+        <form classname='container-fluid' id='settingsForm' onSubmit={handleSubmit} 
         style={{ display: gameOver === false ? 'none' : null}}>
 
     <div className='inputDiv'>
-        <label htmlFor="amount" className="form-label settingsLabel">Number of questions</label>
+        <label htmlFor="amount" className="form-label settingsLabel">Questions</label>
         <div className='selectDiv'>
         <select
           name="amount"
@@ -140,7 +141,7 @@ return (
           
         </select>
       </div>
-        <button className="btn btn-primary" id='settingsSubmitBtn'>submit</button>
+        <button className="btn btn-primary" id='settingsSubmitBtn'>Begin</button>
         </form>  
 
         {!gameOver && questions.length > 0 ? <QuestionCard questions={questions} increment={increment} gameOver={gameOver} setGameOver={setGameOver}/> : null }

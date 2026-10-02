@@ -5,6 +5,9 @@ const { BadRequestError } = require('../expressErrors/errors');
 const userSchema = require(__dirname + '/../schemas.js/user.json');
 const userAuthSchema = require(__dirname + '/../schemas.js/userAuth.json');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const SECRET_KEY="SUPASECRETIVE"
+
 
 /* Route handler for user authentication */
 /* Find users by username (feature has not yet been added) */
@@ -51,10 +54,15 @@ router.post("/register", async function(req,res,next){
                 throw new BadRequestError(errors)
             }
 
-            const {username,password} = req.body;
-            const user = await User.authenticate(username,password)
-            req.session.user = user.user_id;
-            return res.status(200).json({success : true, user});
+            else{
+
+                const {username,password} = req.body;
+                const user = await User.authenticate(username,password)
+                const token = jwt.sign(user, SECRET_KEY, {expiresIn: '1h'})
+
+                req.session.user = user.user_id;
+                    return res.status(200).json({success : true, user});
+            }
 
     }
         catch(err){

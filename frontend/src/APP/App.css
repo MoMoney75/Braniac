@@ -1,16 +1,20 @@
-html {
-  height: 100%;
-}
-body {
-  min-height: 100%;
-  
-}
-
-.App{
-  min-height: calc(100%);
+html,body {
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content:  top;
+  min-height: 100vh;
+}
+.App{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: #6d4fc6;
+  background: #2A7B9B;
+  background: linear-gradient(-45deg,rgb(18, 18, 18) 0%,#6d4fc6 50%, rgb(18, 18, 18) 100%);
+}
+
+.App > :nth-child(3) {
+  flex-grow: 1; /* This forces the skeleton to stretch and push the footer down */
+  width: 100%;
 }

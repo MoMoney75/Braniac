@@ -52,23 +52,21 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
     }
 
     /* Handles submission of user responses */
-    // NEW CODE ---> REMOVED "currentQuestion"
-    //as a parameter for handleSubmit function, unsure if neeeded
     const handleSubmit =  async(e) => {
         e.preventDefault();
 
         if(selectedAnswer === currQuestion.correctAnswer){
-            setResponse('correct!')
+            setResponse('✔')
             setScore(score + increment)
         } else{
-          setResponse('incorrect!')
+          setResponse('✖')
       }
 
-      /* handles get next question to displace to user
+      /* handles get next question to display to user;
          uses setTimeout for a slight delay to improve 
          user experience */
       if (currQuestionIdx + 1 < questions.length) {
-        setTimeout( async() =>{
+        setTimeout(async() =>{
           setCurrQuestionIdx(currQuestionIdx + 1);
           setQuestionCounter(questionCounter + 1);
           setResponse('');
@@ -103,9 +101,19 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
     
     return (
       <div>
-        <div id='mainGameDiv'>
+        
+        <div  className="container-fluid" id='mainGameDiv'>
+                <div id='counters'>
+                    <p>{`${questionCounter} / ${questions.length}`}  
+                  <span id="answer-result"style={{color:response === '✔' ? 'green' : 'red'}}>    {response}</span>
+               </p>
+                <p>score: {score}</p>
+              
+                <p style={{color: 'green'}}>{finalMsg}</p>
+               
+               </div>
                 <p id='question' dangerouslySetInnerHTML={{__html :currQuestion.question}}></p>
-
+              
                 <form onSubmit={(e) => handleSubmit(e, currQuestion)}>
                   {shuffledAnswers.map((answer, idx) => (
                     <div key={idx} className='answers'>
@@ -117,23 +125,23 @@ function QuestionCard({questions, increment, gameOver, setGameOver}){
                         onChange={handleChange}
                       />
                       <label htmlFor={`answer_${idx}`} dangerouslySetInnerHTML={{__html: answer}}></label>
+                      
                     </div>
                   ))}
+
+
                   {gameOver === false? 
                   
-                  <button className="btn btn-primary" id="answerBtn"type="submit">submit</button>: null}
                   
-                </form>
-                <p style={{color:response === 'correct!' ? 'green' : 'red'}}>{response}</p>
-                <p style={{color: 'green'}}>{finalMsg}</p>
+                    <button className="btn" id="answerBtn"type="submit">Submit</button>: null}
 
-                <div id='counters'>
-                <p>score: {score}</p>
-                <p>question: {`${questionCounter} / ${questions.length}`}</p>
-               </div>
+                </form>
+                <p style={{color: 'green'}}>{finalMsg}</p>
+            
+
               </div>
             </div>
                   );
-                }
+        }
     
     export default QuestionCard;

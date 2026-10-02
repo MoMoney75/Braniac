@@ -20,7 +20,7 @@ class User{
             const result = await db.query(`SELECT user_id, username, password FROM users WHERE
             username = $1`, [username])
             const user = result.rows[0];
-            if(user.length === 0){
+            if(!user){
                 throw new BadRequestError("Invalid username or password")
             }
 

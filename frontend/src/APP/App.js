@@ -4,6 +4,7 @@ import Skeleton from '../Routes/Routes';
 import GameApi from '../APIs/GameApi';
 import UserAPI from '../APIs/UserAPi';
 import Logo from '../Home/Logo';
+import Footer from "../Home/Footer" ;
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -44,8 +45,10 @@ async function login(loginData){
 
   return (
     <div className='App'>
+      <header></header>
         <Logo />
        <Skeleton login={login} register={register}categories={categories}/>
+        <Footer />
     </div>
   );
 }

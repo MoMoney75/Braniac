@@ -4,7 +4,7 @@ let DB_URI;
 
 /* Determines which database is being used based
    on process.env.NODE_ENV */
-if(process.env.NODE_ENV === 'test'){
+if(process.env.NODE_ENV !== 'production'){
     DB_URI = "postgresql:///braniac_test";
 }
 else{ 

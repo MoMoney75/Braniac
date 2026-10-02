@@ -38,13 +38,13 @@ return(
     <div className='main-div'>
         <div className='form-div'>
         <h1 className='h5'>
-            Register Now! 
+            Create account
         </h1>
         {errors.length ? errors.map(e => <p style={{color: 'red'}}>{e}</p>) : null}
         <form onSubmit={handleSubmit} id='form'>
        
             <div className='mb-3'> 
-            <label htmlFor='username' className='form-label'> username </label>
+            <label htmlFor='username' className='form-label'> Username </label>
             <input type='text'
             name='username'
             value={formData.username}
@@ -53,7 +53,7 @@ return(
             </div>
 
             <div>
-            <label htmlFor='password' className='form-label'> password </label>
+            <label htmlFor='password' className='form-label'> Password </label>
             <input type='password'
             name='password'
             value={formData.password}
@@ -61,14 +61,14 @@ return(
             className='form-control form-control-sm'/>
             </div>
 
-                <button type='submit' className='btn btn-primary' id='submitBtn' >submit</button>
+                <button type='submit' className='btn btn-primary' id='submitBtn' >Submit</button>
                 <a href='/' className='btn btn-primary' id='cancelBtn' style={{ 
                 backgroundColor: 'rgb(161, 14, 85)' ,fontSize:'2.5rem',
                 marginLeft:'1rem',
                 paddingLeft: '2.5rem',
                 paddingRight: '2.5rem',
                 paddingTop: '1rem',
-                paddingBottom: '1rem'}}>cancel</a>
+                paddingBottom: '1rem'}}>Cancel</a>
         </form>
 
         </div>

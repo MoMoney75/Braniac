@@ -1,10 +1,9 @@
 import axios from "axios";
-//import BASE_URL from "./db";
+import BASE_URL from "./db";
 
 /* UserAPI handles all user info calls such as
    get by username, register and login.
    Also handles user game stats and saveGame */
-   const BASE_URL = ""
 class UserAPI {
   static async request(endpoint, data = {}, method = "get") {
     
@@ -42,13 +41,21 @@ class UserAPI {
       return response;
     }
 
-  static async getLowScore(user_id){
+
+    static async getScore(user_id){
+    
+      const response = await this.request(`game/score/${user_id}`)
+      return response;
+    }
+
+    /**Not currently implemented */
+     static async getLowScore(user_id){
   
       const response = await this.request(`game/lowscore/${user_id}`)
       return response;
     }
 
-  static async getHighScore(user_id){
+      static async getHighScore(user_id){
     
       const response = await this.request(`game/highscore/${user_id}`)
       return response;

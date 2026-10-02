@@ -9,7 +9,7 @@ function LoginForm({login}){
 const navigate = useNavigate();
 const [errors,setErrors] = useState([])
 const [formData, setFormData] = useState({
-    username : "",
+    username: "",
     password: ""
 })
 function handleChange(e){
@@ -24,15 +24,19 @@ async function handleSubmit(e){
 
         /* Checks for invalid credentials and adds to errors
            if errors occur, displays error to user*/
-        if(result.success === false){
+        if(result.success === true){  
+            sessionStorage.setItem('user_id', result.result.user.user_id)
+            navigate('/quiz')
+            
+        }
+        else{
+        console.log("error received from backend, showing in handesubmit in login form")
             setErrors("Invalid username or password")
             setFormData({
-                "username": '',
-                "password": ''
+                "username": "" ,
+                "password": ""
             })
         }
-        sessionStorage.setItem('user_id', result.result.user.user_id)
-        navigate('/quiz')
 }
 
 return(
@@ -43,7 +47,7 @@ return(
     {errors.length > 0 && <p style={{ color: 'red' }}>{errors}</p>}
     <form onSubmit={handleSubmit} id='form'>
         <div className='mb-3'> 
-        <label htmlFor='username' className='form-label'> username </label>
+        <label htmlFor='username' className='form-label'>Username</label>
         <input type='text'
         name='username'
         value={formData.username}
@@ -52,7 +56,7 @@ return(
         </div>
 
         <div>
-        <label htmlFor='password' className='form-label'> password </label>
+        <label htmlFor='password' className='form-label'> Password </label>
         <input type='password'
         name='password'
         value={formData.password}
@@ -60,14 +64,14 @@ return(
         className='form-control form-control-sm'/>
         </div>
 
-            <button type='submit' className='btn btn-primary' id='submitBtn' >submit</button>
+            <button type='submit' className='btn btn-primary' id='submitBtn' >Submit</button>
             <a href='/' className= 'btn btn-primary' id='cancelBtn' style={{
                 backgroundColor: 'rgb(161, 14, 85)' ,fontSize:'2.5rem',
                 marginLeft:'1rem',
                 paddingLeft: '2.5rem',
                 paddingRight: '2.5rem',
                 paddingTop: '1rem',
-                paddingBottom: '1rem'}}>cancel</a>
+                paddingBottom: '1rem'}}>Cancel</a>
     </form>
 
     </div>

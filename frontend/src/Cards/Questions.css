@@ -1,11 +1,10 @@
 #mainGameDiv{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    justify-content: center;
+    width: 90vw;
+    min-height: 100vh;
+    box-shadow: 3px 4px 10px 5px rgba(52, 235,97, 0.75);
 
 }
 
@@ -15,6 +14,7 @@
     padding-top: 1rem;
     margin-bottom: 2rem;
     font-size: 2.5rem;
+    color:white
 }
 
 .answers{
@@ -24,16 +24,30 @@
     font-size: 2.5rem;
 }
 
+#answer-result{
+    margin-left: 1rem ;
+}
+
 #counters{
-display: flex;
-font-size: 1rem;
-margin-bottom: 2em;
-flex-direction: column;
-align-items: flex-start;
-justify-content: center;
+    border-radius: 1rem;
+    border-style: solid;
+    border-color: white;
+    border-color: rgba(43,45,64,255);
+    box-shadow: 0px 0px 10px 2px rgba(52, 235,97, 0.75);
+    color: white;
+    display: flex;
+    font-size: 2rem;
+    padding-top: 0;
+    margin-top: 0;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
 }
 
 #answerBtn{
+    color: white;
+    width: 100%;
     margin-top: 1rem;
     margin-bottom: 1rem;
     background-color: rgb(109,79,198);
@@ -41,7 +55,7 @@ justify-content: center;
     border-width: 1.5px;
     border-radius: 1rem;
     border-color: rgba(43,45,64,255);
-    font-size: 2.5rem;
+    font-size: 2.0rem;
   }
 #answerBtn:hover{
       background-color: rgba(43,45,64,255);

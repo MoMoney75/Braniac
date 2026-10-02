@@ -29,7 +29,7 @@ class GameApi{
     }
     
     /* Will get questions based on user form inputs */
-    static async getQuestions(amount,type,difficulty, category){
+    static async getQuestions(amount,type,difficulty,category){
         try{
             const questionData = [];
             await this.createToken();
@@ -57,7 +57,8 @@ class GameApi{
         /* Handles error when not enough questions avaiable to
         fill customer request*/
         if(result.data.response_code === 4 ){
-            console.log("Sorry, not enough questions for this category");
+            console.log("Not enough questions available to fill request")
+            throw new Error("Not enough questions available to fill request")
         }
 
         /* Loop through results and pick out needed information

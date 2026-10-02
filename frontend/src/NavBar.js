@@ -15,19 +15,20 @@ function NavBar() {
 
   return (
     <nav id="navbar">
-      <span>
-        <button onClick={()=>{
-          navigate('/profile')
-        }}className="btn btn-primary" id='profileBtn'>
-        Stats
-        </button>
-      </span>
-
+    
   <span>
         <button  onClick={()=>{
           navigate('/quiz')
         }}className="btn btn-primary" id='profileBtn'>
           Play
+        </button>
+      </span>
+
+       <span>
+        <button onClick={()=>{
+          navigate('/profile')
+        }}className="btn btn-primary" id='profileBtn'>
+        Stats
         </button>
       </span>
 

@@ -1,6 +1,7 @@
-#logo h1{
+#logo > h1{
     display: flex;
-    font-size: 8em;
+    font-size: 5em !important;
+    color:white ;
     font-family: "Kode Mono", monospace;
     font-optical-sizing: auto;
     font-weight: normal;
